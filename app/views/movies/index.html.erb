@@ -1,7 +1,9 @@
 
 <% @movies.take(20).each do |movie| %>
   <ul class="movie">
-    <li class="title"><%= "Title: #{movie[:title]}" %></li>
+    <li class="title"><%= link_to "Title: #{movie[:title]}", user_movie_path(@user, movie[:id]) %></li>
     <li class="vote"><%= "Average vote: #{movie[:vote_average]}" %></li>
   </ul>
 <% end %>
+
+<%= link_to 'Discover Page', user_discover_index_path(@user) %>

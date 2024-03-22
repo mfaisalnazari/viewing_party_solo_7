@@ -18,8 +18,14 @@ RSpec.describe 'Discover' do
         within(first(".movie")) do
             expect(page).to have_css(".title")
             expect(page).to have_css(".vote")
+
             
           end
+        expect(page).to have_link("Discover Page")
+        click_link("Discover Page")
+
+        expect(current_path).to eq(user_discover_index_path(@user))
+
     end
 
     it 'allows user to search for movie',:vcr do
@@ -31,5 +37,11 @@ RSpec.describe 'Discover' do
         expect(current_path).to eq(user_movies_path(@user))
         expect(page).to have_css(".title")
         expect(page).to have_css(".vote")
+
+        expect(page).to have_link("Discover Page")
+        click_link("Discover Page")
+
+        expect(current_path).to eq(user_discover_index_path(@user))
     end
+    
 end

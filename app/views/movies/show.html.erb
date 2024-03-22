@@ -1,0 +1,36 @@
+
+<%= link_to 'Discover Page', user_discover_index_path(@user) %>
+
+
+
+
+
+<li class="Title"><%= "Title: #{@movie[:title]}" %></li>
+<li class="vote"><%= "Average vote: #{@movie[:vote_average]}" %></li>
+<li class="Runtime"><%= "Runtime: #{@movie[:runtime]}" %></li>
+ <% @movie[:genres].each do |genre| %>
+<li class="Genres"><%= "Genres: #{genre[:name]}" %></li>
+<% end %>
+<li class="Summary"><%= "Summary: #{@movie[:overview]}" %></li>
+ <% @cast.take(10).each do |cast| %>
+<li class="Cast"><%= "Cast: #{cast[:name]}" %></li>
+<% end %>
+
+<li class="Total Reviews"><%= "review: #{@authors_count}" %></li>
+
+<% @authors.each do |author| %>
+<li class="author"><%= "author: #{author[:author]}" %></li>
+<li class="review"><%= "review: #{author[:content]}" %></li>
+
+<% end %>
+
+<%= link_to "Create Viewing Party", new_user_movie_path(@user) %>
+
+
+
+
+
+
+
+
+
