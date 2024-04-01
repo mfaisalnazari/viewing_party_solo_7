@@ -22,7 +22,7 @@ RSpec.describe "Logging In" do
     
   end
 
-  it "can log in with valid credentials" do
+  it "can log in with valid credentials sad " do
     user = User.create(name: "funbucket13",email: "alex@123.com", password: "test")
 
     visit root_path
