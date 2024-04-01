@@ -23,15 +23,21 @@ class UsersController < ApplicationController
    end
 
    def login_user
-      user = User.find_by(email: params[:email])
-      # require "pry" ; binding.pry
-      if user.authenticate(params[:password])
-         flash[:success] = "Welcome, #{user.name}!"
-         redirect_to user_path(user)
+      if params[:email].present? && params[:password].present?
+         user = User.find_by(email: params[:email])
+         if user.authenticate(params[:password])
+            flash[:success] = "Welcome, #{user.name}!"
+            redirect_to user_path(user)
+         else
+            flash[:error] = "Sorry, your credentials are bad."
+            redirect_to login_path
+         end
       else
-         flash[:error] = "Sorry, your credentials are bad."
-         render :login_form
+         flash[:error] = "Fill in the blanks."
+         redirect_to login_path
       end
+
+
    end
 private
 
