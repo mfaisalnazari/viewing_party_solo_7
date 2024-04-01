@@ -19,13 +19,24 @@ class UsersController < ApplicationController
       end   
    end
 
+   def login_form
+   end
 
-
-
+   def login_user
+      user = User.find_by(email: params[:email])
+      # require "pry" ; binding.pry
+      if user.authenticate(params[:password])
+         flash[:success] = "Welcome, #{user.name}!"
+         redirect_to user_path(user)
+      else
+         flash[:error] = "Sorry, your credentials are bad."
+         render :login_form
+      end
+   end
 private
 
   def user_params
-      params.require(:user).permit(:name, :email)
+      params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
 
 end
