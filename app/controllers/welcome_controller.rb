@@ -1,5 +1,8 @@
 class WelcomeController < ApplicationController
   def index
-    @users = User.all
+    if current_user
+      @users = User.all
+    end
+    # binding.pry
   end
 end
